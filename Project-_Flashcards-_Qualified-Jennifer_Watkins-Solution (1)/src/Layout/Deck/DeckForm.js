@@ -13,7 +13,7 @@ function DeckForm({ name, description, handleChange }) {
           placeholder="Deck Name"
           required={true}
           onChange={handleChange}
-          value={name || ""}
+          value={name}
         ></input>
       </div>
       <div>
@@ -24,7 +24,7 @@ function DeckForm({ name, description, handleChange }) {
           placeholder="Brief description of the deck"
           required={true}
           onChange={handleChange}
-          value={description || ""}
+          value={description}
         ></textarea>
       </div>
     </>

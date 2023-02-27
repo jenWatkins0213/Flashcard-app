@@ -10,7 +10,7 @@ function DeckEdit() {
   const params = useParams();
   const deckId = params.deckId;
 
-  const [deck, setDeck] = useState({});
+  const [deck, setDeck] = useState("");
 
   const handleChange = (event) => {
     console.log(event.target.value, event.target.name);

@@ -7,9 +7,7 @@ import CardForm from "./CardForm";
 
 function CardEdit() {
   const history = useHistory();
-  const params = useParams();
-  const deckId = params.deckId;
-  const cardId = params.cardId;
+  const {deckId, cardId} = useParams();
 
   const [deck, setDeck] = useState({});
   const [card, setCard] = useState([]);
@@ -20,17 +18,40 @@ function CardEdit() {
   };
 
   useEffect(() => {
-    readDeck(deckId)
-      .then((result) => setDeck(result))
-      .then(() => readCard(cardId))
-      .then((result) => setCard(result))
-  }, [deckId, cardId]);
+    async function loadDeck() {
+        const response = await readDeck(deckId)
+        setDeck(response)
+        // console.log(response)
+    }
+    loadDeck()
+}, [deckId])
+
+useEffect(() => {
+  async function loadCard() {
+      const response = await readCard(cardId)
+      setCard(response)
+      // console.log('set card', response)
+  }
+  loadCard()
+}, [cardId, setCard])
+
+const cancelButtonHandler = () => {
+  history.push(`/decks/${deckId}`)
+}
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    updateCard(card).then(({ deckId }) => history.push(`/decks/${deckId}`));
+    await updateCard({...card})
+    history.push(`/decks/${deckId}`);
   };
+
+  const inputChangeHandler = (event) => {
+    setCard({
+        ...card,
+        [event.target.name]: event.target.value
+    })
+} 
 
   return (
     <>
@@ -40,7 +61,7 @@ function CardEdit() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+            <Link to={`/decks/${deck.id}`}>{deck.name}</Link>
           </li>
           <li>Study Cards</li>
         </ol>

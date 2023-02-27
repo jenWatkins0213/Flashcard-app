@@ -21,7 +21,12 @@ function CardCreate() {
   };
 
   useEffect(() => {
-    readDeck(deckId).then((result) => setDeck(result));
+    async function loadDeck() {
+    const response = await 
+    readDeck(deckId)
+    setDeck(response)
+    }
+    loadDeck()
   }, [deckId]);
 
   const handleSubmit = (event) => {

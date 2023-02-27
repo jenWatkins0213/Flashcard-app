@@ -6,15 +6,16 @@ function SingleCardDetail({
   card: { front, back, id, deckId },
   renderSingleDeckDetail,
 }) {
-  const handleDelete = async () => {
-    const result = window.confirm(
-      "Delete this card? You will not be able to recover it."
-    );
-    if (result) {
-      await deleteCard(id);
-      renderSingleDeckDetail();
+  function handleDelete(cardId){
+    if (
+        window.confirm(
+            "Delete this card? You will not be able to recover it."
+        )
+    ) {
+        deleteCard(cardId)
+        .then(history.go(0))
     }
-  };
+}
 
   return (
     <div>
@@ -23,7 +24,7 @@ function SingleCardDetail({
       <Link to= {`/decks/${deckId}/cards/${id}/edit`} >
          <button>Edit</button>
       </Link>
-      <button onClick={handleDelete}>Delete</button>
+      <button onClick={() => handleDelete(card.id)}>Delete</button>
     </div>
   );
 }
