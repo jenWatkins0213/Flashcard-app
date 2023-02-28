@@ -36,12 +36,6 @@
       "deckId": 1
     },
     {
-      "front": "What path will match the follow Route?\n<Route>\n  <NotFound />\n</Route>",
-      "back": "All paths. A route with no path matches all URL's",
-      "deckId": 2,
-      "id": 4
-    },
-    {
       "front": "What does <Switch> do?",
       "back": "Renders the first matching child <Route> ",
       "deckId": 2,
@@ -125,6 +119,18 @@
       "back": "hello",
       "deckId": 1,
       "id": 21
+    },
+    {
+      "front": "1",
+      "back": "2",
+      "deckId": 2,
+      "id": 22
+    },
+    {
+      "front": "3",
+      "back": "4",
+      "deckId": 2,
+      "id": 23
     }
   ]
 }
