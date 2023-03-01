@@ -26,11 +26,21 @@ export function ViewDeck() {
   }
 
   //handle card delete
-  function deleteCardHandler(cardId) {
-    if (window.confirm("Delete Card? This can not be undone.")) {
-      deleteCard(cardId).then((output) => history.go(0));
+  // function deleteCardHandler(cardId) {
+  //   if (window.confirm("Delete Card? This can not be undone.")) {
+  //     deleteCard(cardId).then((output) => history.go(0));
+  //   }
+  // }
+
+  const deleteCardHandler = async (id) => {
+    if (
+      window.confirm(`Delete this card? You will not be able to recover it.`)
+    ) {
+      await deleteCard(id);
+      history.go(0);
     }
-  }
+  };
+
 
   //handle deck delete
   function deleteDeckHandler(deckId) {
